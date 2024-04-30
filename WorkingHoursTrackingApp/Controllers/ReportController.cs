@@ -16,6 +16,7 @@ namespace EmployeeTrackingApp.Controllers
             _reportService = reportService;
         }
 
+        // HTTP endpoint to get working hours for a single employee in a custom time range
         [HttpGet("working-hours/{employeeId}")]
         public IActionResult GetWorkingHoursForEmployee(int employeeId, DateTime startDate, DateTime endDate)
         {
@@ -23,6 +24,7 @@ namespace EmployeeTrackingApp.Controllers
             return Ok(workingHours);
         }
 
+        // HTTP endpoint to get working hours for all employees in a custom time range, ordered by the amount of working hours descending
         [HttpGet("all-employees")]
         public IActionResult GetEmployeesByWorkingHoursDescending(DateTime startDate, DateTime endDate)
         {
