@@ -47,9 +47,9 @@ namespace EmployeeTrackingApp.Services
 
             // Generate output
             var output = new List<string>
-    {
-        $"Total working hours for {employee.FirstName} {employee.LastName}: {formattedTotalTime}"
-    };
+                {
+                    $"Total working hours for {employee.FirstName} {employee.LastName}: {formattedTotalTime}"
+                };
 
             foreach (var group in workingHoursByDate)
             {
@@ -104,6 +104,24 @@ namespace EmployeeTrackingApp.Services
                 }
             }
             return result;
+        }
+
+        public IEnumerable<Employee> GetEmployeesWorkingOnDate(DateTime date)
+        {
+            return _context.Schedules
+                .Where(s => s.Date.Date == date.Date)
+                .Select(s => s.Employee)
+                .Distinct()
+                .ToList();
+        }
+
+        public IEnumerable<DateTime> GetWorkDaysForEmployee(int employeeId)
+        {
+            return _context.Schedules
+                .Where(s => s.EmployeeId == employeeId)
+                .Select(s => s.Date.Date)
+                .Distinct()
+                .ToList();
         }
 
         private string FormatTimeSpanString(TimeSpan timeSpan)

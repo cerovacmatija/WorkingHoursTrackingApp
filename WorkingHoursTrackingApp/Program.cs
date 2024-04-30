@@ -24,6 +24,10 @@ builder.Services.AddScoped<TrackingService>();
 // Register ReportService
 builder.Services.AddScoped<ReportService>();
 
+// Register ScheduleService
+builder.Services.AddScoped<ScheduleService>();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

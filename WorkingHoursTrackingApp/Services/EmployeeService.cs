@@ -21,7 +21,7 @@ namespace EmployeeTrackingApp.Services
             _context.SaveChanges();
         }
 
-        public Employee GetEmployee(int id)
+        public Employee? GetEmployee(int id)
         {
             return _context.Employees.FirstOrDefault(e => e.Id == id);
         }
