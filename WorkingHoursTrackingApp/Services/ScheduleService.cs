@@ -79,6 +79,24 @@ namespace EmployeeTrackingApp.Services
                 })
                 .ToList();
         }
+
+        public IEnumerable<Employee> GetEmployeesWorkingOnDate(DateTime date)
+        {
+            return _context.Schedules
+                .Where(s => s.Date.Date == date.Date)
+                .Select(s => s.Employee)
+                .Distinct()
+                .ToList();
+        }
+
+        public IEnumerable<DateTime> GetWorkDaysForEmployee(int employeeId)
+        {
+            return _context.Schedules
+                .Where(s => s.EmployeeId == employeeId)
+                .Select(s => s.Date.Date)
+                .Distinct()
+                .ToList();
+        }
     }
 
     public class ScheduleWithEmployee
